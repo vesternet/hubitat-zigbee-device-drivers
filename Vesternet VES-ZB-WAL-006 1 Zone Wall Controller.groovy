@@ -11,7 +11,7 @@ metadata {
         capability "Sensor"        
 		capability "Configuration"
         
-		fingerprint profileId: "0104", inClusters: "0000,0001,0003,0B05", outClusters: "0003,0004,0005,0006,0008,0019,0300,1000", manufacturer: "Sunricher", model: "ZGRC-KEY-007", deviceJoinName: "Vesternet VES-ZB-WAL-006 1 Zone Wall Controller"
+		fingerprint profileId: "0104", endpointId:"01", inClusters: "0000,0001,0003,0B05", outClusters: "0003,0004,0005,0006,0008,0019,0300,1000", manufacturer: "Sunricher", model: "ZGRC-KEY-007", deviceJoinName: "Vesternet VES-ZB-WAL-006 1 Zone Wall Controller"
 	}
 	preferences {
         input name: "logEnable", type: "bool", title: "Enable Debug Logging", defaultValue: true
@@ -48,10 +48,10 @@ def updated() {
 
 def configure() {
 	logDebug("configure called")
-    def cmds = [ "zdo bind 0x${device.deviceNetworkId} 0x${device.endpointId} 0x01 0x0006 {${device.zigbeeId}} {}", "delay 200",
-                "zdo bind 0x${device.deviceNetworkId} 0x${device.endpointId} 0x01 0x0008 {${device.zigbeeId}} {}", "delay 200",
-                "zdo bind 0x${device.deviceNetworkId} 0x${device.endpointId} 0x01 0x0001 {${device.zigbeeId}} {}", "delay 200",
-                "he cr 0x${device.deviceNetworkId} 0x${device.endpointId} 0x0001 0x21 0x20 21600 21600 {0x01}" ]
+    def cmds = [ "zdo bind 0x${device.deviceNetworkId} 0x01 0x01 0x0006 {${device.zigbeeId}} {}", "delay 200",
+                "zdo bind 0x${device.deviceNetworkId} 0x01 0x01 0x0008 {${device.zigbeeId}} {}", "delay 200",
+                "zdo bind 0x${device.deviceNetworkId} 0x01 0x01 0x0001 {${device.zigbeeId}} {}", "delay 200",
+                "he cr 0x${device.deviceNetworkId} 0x01 0x0001 0x21 0x20 21600 21600 {0x01}" ]
     logDebug("sending ${cmds}")
 	return cmds
 }
