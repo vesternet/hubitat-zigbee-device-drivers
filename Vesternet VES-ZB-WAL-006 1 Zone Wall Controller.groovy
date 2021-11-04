@@ -30,7 +30,7 @@ def installed() {
     logDebug("installed called")	
     def numberOfButtons = modelNumberOfButtons[device.getDataValue("model")]
     logDebug("numberOfButtons: ${numberOfButtons}")
-    sendEvent(getEvent(name: "numberOfButtons", value: 2, displayed: false))
+    sendEvent(getEvent(name: "numberOfButtons", value: numberOfButtons, displayed: false))
     for(def buttonNumber : 1..numberOfButtons) {
         sendEvent(buttonAction("pushed", buttonNumber, "digital"))
     }
@@ -98,7 +98,7 @@ def getEvents(descriptionMap) {
             }
         }
         else if (descriptionMap.cluster == "0008" || descriptionMap.clusterId == "0008" || descriptionMap.clusterInt == 8) {
-            def levelCommand = "${descriptionMap.command} unknwon"
+            def levelCommand = "${descriptionMap.command} unknown"
             switch (descriptionMap.command) {
                 case "05": 
                     levelCommand = "move with on/off"
