@@ -3,7 +3,7 @@
  * 
  */
 metadata {
-	definition (name: "Vesternet VES-ZB-DIM-004 2-Wire Capable Dimmer", namespace: "Vesternet", author: "Vesternet") {
+	definition (name: "Vesternet VES-ZB-DIM-004 2-Wire Capable Dimmer", namespace: "Vesternet", author: "Vesternet", importUrl: "https://raw.githubusercontent.com/vesternet/hubitat-zigbee-device-drivers/main/Vesternet%20VES-ZB-DIM-004%202-Wire%20Capable%20Dimmer.groovy") {
 		capability "Switch"
 		capability "SwitchLevel"
 		capability "ChangeLevel"		

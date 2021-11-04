@@ -3,7 +3,7 @@
  * 
  */
 metadata {
-	definition (name: "Vesternet VES-ZB-SWI-005 2-Wire Capable Switch", namespace: "Vesternet", author: "Vesternet") {
+	definition (name: "Vesternet VES-ZB-SWI-005 2-Wire Capable Switch", namespace: "Vesternet", author: "Vesternet", importUrl: "https://raw.githubusercontent.com/vesternet/hubitat-zigbee-device-drivers/main/Vesternet%20VES-ZB-SWI-005%202-Wire%20Capable%20Switch.groovy") {
 		capability "Switch"		
 		capability "Actuator"
 		capability "Configuration"

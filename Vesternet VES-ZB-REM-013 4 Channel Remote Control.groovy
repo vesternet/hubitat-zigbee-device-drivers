@@ -3,7 +3,7 @@
  * 
  */
 metadata {
-	definition (name: "Vesternet VES-ZB-REM-013 4 Channel Remote Control", namespace: "Vesternet", author: "Vesternet") {
+	definition (name: "Vesternet VES-ZB-REM-013 4 Channel Remote Control", namespace: "Vesternet", author: "Vesternet", importUrl: "https://raw.githubusercontent.com/vesternet/hubitat-zigbee-device-drivers/main/Vesternet%20VES-ZB-REM-013%204%20Channel%20Remote%20Control.groovy") {
 		capability "PushableButton"
         capability "HoldableButton"
         capability "ReleasableButton"

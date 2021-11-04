@@ -3,7 +3,7 @@
  * 
  */
 metadata {
-	definition (name: "Vesternet VES-ZB-WAL-012 4 Zone Wall Controller", namespace: "Vesternet", author: "Vesternet") {
+	definition (name: "Vesternet VES-ZB-WAL-012 4 Zone Wall Controller", namespace: "Vesternet", author: "Vesternet", importUrl: "https://raw.githubusercontent.com/vesternet/hubitat-zigbee-device-drivers/main/Vesternet%20VES-ZB-WAL-012%204%20Zone%20Wall%20Controller.groovy") {
 		capability "PushableButton"
         capability "HoldableButton"
         capability "ReleasableButton"
