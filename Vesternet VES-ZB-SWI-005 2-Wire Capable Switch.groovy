@@ -9,8 +9,8 @@ metadata {
 		capability "Configuration"
         capability "Refresh"
 
-		fingerprint profileId: "0104", endpointId:"01", inClusters: "0000,0003,0004,0005,0006,0B05,1000", outClusters: "0019", manufacturer: "Sunricher", model: "Micro Smart OnOff", deviceJoinName: "Vesternet VES-ZB-SWI-005 2-Wire Capable Switch"
-        fingerprint profileId: "0104", endpointId:"01", inClusters: "0000,0003,0004,0005,0006,0B05,1000", outClusters: "0019", manufacturer: "Sunricher", model: "HK-SL-RELAY-A", deviceJoinName: "Vesternet VES-ZB-SWI-005 2-Wire Capable Switch"        
+		fingerprint profileId: "0104", endpointId: "01", inClusters: "0000,0003,0004,0005,0006,0B05,1000", outClusters: "0019", manufacturer: "Sunricher", model: "Micro Smart OnOff", deviceJoinName: "Vesternet VES-ZB-SWI-005 2-Wire Capable Switch"
+        fingerprint profileId: "0104", endpointId: "01", inClusters: "0000,0003,0004,0005,0006,0B05,1000", outClusters: "0019", manufacturer: "Sunricher", model: "HK-SL-RELAY-A", deviceJoinName: "Vesternet VES-ZB-SWI-005 2-Wire Capable Switch"        
 	}
 	preferences {
         input name: "logEnable", type: "bool", title: "Enable Debug Logging", defaultValue: true

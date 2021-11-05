@@ -16,8 +16,8 @@ metadata {
 		capability "Configuration"
         capability "Refresh"
 
-		fingerprint profileId: "0104", endpointId:"01", inClusters: "0000,0003,0004,0005,0006,0008,0702,0B04,0B05,1000", outClusters: "0019", manufacturer: "Sunricher", model: "Micro Smart Dimmer", deviceJoinName: "Vesternet VES-ZB-DIM-004 2-Wire Capable Dimmer"
-        fingerprint profileId: "0104", endpointId:"01", inClusters: "0000,0003,0004,0005,0006,0008,0702,0B04,0B05,1000", outClusters: "0019", manufacturer: "Sunricher", model: "HK-SL-DIM-A", deviceJoinName: "Vesternet VES-ZB-DIM-004 2-Wire Capable Dimmer"
+		fingerprint profileId: "0104", endpointId: "01", inClusters: "0000,0003,0004,0005,0006,0008,0702,0B04,0B05,1000", outClusters: "0019", manufacturer: "Sunricher", model: "Micro Smart Dimmer", deviceJoinName: "Vesternet VES-ZB-DIM-004 2-Wire Capable Dimmer"
+        fingerprint profileId: "0104", endpointId: "01", inClusters: "0000,0003,0004,0005,0006,0008,0702,0B04,0B05,1000", outClusters: "0019", manufacturer: "Sunricher", model: "HK-SL-DIM-A", deviceJoinName: "Vesternet VES-ZB-DIM-004 2-Wire Capable Dimmer"
 	}
 
 	preferences {

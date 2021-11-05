@@ -11,7 +11,7 @@ metadata {
         capability "Sensor"        
 		capability "Configuration"
         
-		fingerprint profileId: "0104", endpointId:"01", inClusters: "0000,0001,0003,0B05", outClusters: "0003,0004,0005,0006,0008,0019,0300,1000", manufacturer: "Sunricher", model: "ZGRC-KEY-013", deviceJoinName: "Vesternet VES-ZB-REM-013 4 Channel Remote Control"     
+		fingerprint profileId: "0104", endpointId: "01", inClusters: "0000,0001,0003,0B05", outClusters: "0003,0004,0005,0006,0008,0019,0300,1000", manufacturer: "Sunricher", model: "ZGRC-KEY-013", deviceJoinName: "Vesternet VES-ZB-REM-013 4 Channel Remote Control"     
 	}
 	preferences {
         input name: "logEnable", type: "bool", title: "Enable Debug Logging", defaultValue: true
