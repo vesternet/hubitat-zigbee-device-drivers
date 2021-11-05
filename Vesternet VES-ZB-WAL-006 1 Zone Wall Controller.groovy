@@ -12,6 +12,7 @@ metadata {
 		capability "Configuration"
         
 		fingerprint profileId: "0104", endpointId:"01", inClusters: "0000,0001,0003,0B05", outClusters: "0003,0004,0005,0006,0008,0019,0300,1000", manufacturer: "Sunricher", model: "ZGRC-KEY-007", deviceJoinName: "Vesternet VES-ZB-WAL-006 1 Zone Wall Controller"
+        fingerprint profileId: "0104", endpointId:"01", inClusters: "0000,0001,0003,0B05", outClusters: "0003,0004,0005,0006,0008,0019,0300,1000", manufacturer: "Sunricher", model: "ZG2833K2_EU07", deviceJoinName: "Vesternet VES-ZB-WAL-006 1 Zone Wall Controller"        
 	}
 	preferences {
         input name: "logEnable", type: "bool", title: "Enable Debug Logging", defaultValue: true
@@ -21,7 +22,7 @@ metadata {
 
 def getModelNumberOfButtons() {
     logDebug("getModelNumberOfButtons called")
-    ["ZGRC-KEY-007" : 2]
+    ["ZGRC-KEY-007" : 2, "ZG2833K2_EU07" : 2]
 }
 
 def installed() {
