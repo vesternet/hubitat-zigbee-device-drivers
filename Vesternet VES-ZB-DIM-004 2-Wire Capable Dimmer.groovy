@@ -337,7 +337,7 @@ def getEvents(descriptionMap) {
                     currentValue = currentValue / 1000 
                     def descriptionText = "${device.displayName} is ${currentValue} A"
                     logText(descriptionText)
-                    events.add(getEvent([name: "current", value: currentValue, unit: "A", descriptionText: descriptionText]))
+                    events.add(getEvent([name: "amperage", value: currentValue, unit: "A", descriptionText: descriptionText]))
                 }     
                 else {
                     logDebug("electrical measurement (0B04) attribute skipped")
