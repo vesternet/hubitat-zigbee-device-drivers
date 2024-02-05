@@ -12,7 +12,8 @@ metadata {
 		capability "Configuration"
         
 		fingerprint profileId: "0104", endpointId: "01", inClusters: "0000,0001,0003,0B05", outClusters: "0003,0004,0005,0006,0008,0019,0300,1000", manufacturer: "Sunricher", model: "ZG2833K8_EU05", deviceJoinName: "Vesternet VES-ZB-WAL-012 4 Zone Wall Controller"            
-        fingerprint profileId: "0104", endpointId: "01", inClusters: "0000,0001,0003,0B05,1000", outClusters: "0003,0004,0005,0006,0008,0019,1000", manufacturer: "Sunricher", model: "ZG2833K8_EU05", deviceJoinName: "Vesternet VES-ZB-WAL-012 4 Zone Wall Controller"            
+        fingerprint profileId: "0104", endpointId: "01", inClusters: "0000,0001,0003,0B05,1000", outClusters: "0003,0004,0005,0006,0008,0019,1000", manufacturer: "Sunricher", model: "ZG2833K8_EU05", deviceJoinName: "Vesternet VES-ZB-WAL-012 4 Zone Wall Controller"  
+        fingerprint profileId: "0104", endpointId: "01", inClusters: "0000,0001,0003,0B05,1000", outClusters: "0003,0004,0005,0006,0008,0019,0300,1000", manufacturer: "Sunricher", model: "ZG2833K8_EU05", deviceJoinName: "Vesternet VES-ZB-WAL-012 4 Zone Wall Controller"          
 	}
 	preferences {
         input name: "logEnable", type: "bool", title: "Enable Debug Logging", defaultValue: true
@@ -159,6 +160,10 @@ def getEvents(descriptionMap) {
                 if (descriptionMap.attrId == "0021" || descriptionMap.attrInt == 33) {
                     logDebug("power configuration (0001) battery report")
                     def batteryValue = zigbee.convertHexToInt(descriptionMap.value)
+                    if (batteryValue > 100) {
+                        logDebug("battery value is more than 100, dividing by 2")
+                        batteryValue = (batteryValue / 2).toInteger();
+                    }
                     logDebug("battery percentage report is ${batteryValue}")		
                     def descriptionText = "${device.displayName} is ${batteryValue}%"
                     logText(descriptionText)	                          

@@ -154,6 +154,10 @@ def getEvents(descriptionMap) {
                 if (descriptionMap.attrId == "0021" || descriptionMap.attrInt == 33) {
                     logDebug("power configuration (0001) battery report")
                     def batteryValue = zigbee.convertHexToInt(descriptionMap.value)
+                    if (batteryValue > 100) {
+                        logDebug("battery value is more than 100, dividing by 2")
+                        batteryValue = (batteryValue / 2).toInteger();
+                    }
                     logDebug("battery percentage report is ${batteryValue}")		
                     def descriptionText = "${device.displayName} is ${batteryValue}%"
                     logText(descriptionText)	                          
