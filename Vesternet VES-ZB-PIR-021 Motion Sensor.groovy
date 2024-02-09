@@ -42,7 +42,7 @@ def configure() {
                 "he raw 0x${device.deviceNetworkId} 1 0x01 0x0500 {01 23 00 00 00}", "delay 2000",
                 "he rattr 0x${device.deviceNetworkId} 0x01 0x0500 0 {}", "delay 200",
                 "zdo bind 0x${device.deviceNetworkId} 0x01 0x01 0x0001 {${device.zigbeeId}} {}", "delay 200",
-                "he cr 0x${device.deviceNetworkId} 0x01 0x0001 0x0021 0x20 21600 21600 {0100}", "delay 200",
+                "he cr 0x${device.deviceNetworkId} 0x01 0x0001 0x0021 0x20 600 21600 {0200}", "delay 200",
                 "he raw 0x${device.deviceNetworkId} 1 0x01 0x0001 {10 00 08 00 2100}", "delay 200",
                 "he rattr 0x${device.deviceNetworkId} 0x01 0x0001 0x0021 {}"
                 ]
@@ -181,7 +181,7 @@ def getEvents(descriptionMap) {
                     def batteryValue = zigbee.convertHexToInt(descriptionMap.value)
                     if (batteryValue > 100) {
                         logDebug("battery value is more than 100, dividing by 2")
-                        batteryValue = (batteryValue / 2).toInteger();
+                        batteryValue = batteryValue / 2;
                     }
                     logDebug("battery percentage report is ${batteryValue}")		
                     def descriptionText = "${device.displayName} battery percent is ${batteryValue}%"
