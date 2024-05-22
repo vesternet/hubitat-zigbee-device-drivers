@@ -43,7 +43,7 @@ def configure() {
                 "zdo bind 0x${device.deviceNetworkId} 0x01 0x01 0x0001 {${device.zigbeeId}} {}", "delay 200",
                 "he cr 0x${device.deviceNetworkId} 0x01 0x0402 0x0000 0x29 60 1800 {6400}", "delay 200",
                 "he cr 0x${device.deviceNetworkId} 0x01 0x0405 0x0000 0x21 60 1800 {6400}", "delay 200",
-                "he cr 0x${device.deviceNetworkId} 0x01 0x0001 0x0021 0x20 600 21600 {0200}", "delay 200",
+                "he cr 0x${device.deviceNetworkId} 0x01 0x0001 0x0021 0x20 3600 21600 {0200}", "delay 200",
                 "he raw 0x${device.deviceNetworkId} 1 0x01 0x0402 {10 00 08 00 0000}", "delay 200",
                 "he raw 0x${device.deviceNetworkId} 1 0x01 0x0405 {10 00 08 00 0000}", "delay 200",
                 "he raw 0x${device.deviceNetworkId} 1 0x01 0x0001 {10 00 08 00 2100}", "delay 200",
