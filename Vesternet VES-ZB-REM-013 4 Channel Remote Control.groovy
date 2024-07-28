@@ -117,7 +117,7 @@ def getEvents(descriptionMap) {
                     break            
             }       
             logDebug("level (0008) command: ${levelCommand}") 
-            if (descriptionMap.command == "05") {
+            if (descriptionMap.command == "05" || descriptionMap.command == "01") {
                 def levelDirectionData = descriptionMap.data[0];
                 if (levelDirectionData == "00" || levelDirectionData == "01") {
                     def levelDirection = "${levelDirectionData} unknown"
@@ -140,7 +140,7 @@ def getEvents(descriptionMap) {
                     logDebug("level (0008) direction: ${levelDirectionData} unknown")
                 }
             }
-            else if (descriptionMap.command == "07") {          
+            else if (descriptionMap.command == "07" || descriptionMap.command =="03") {
                 def buttonNumber = device.currentValue("held", true)
                 if (buttonNumber) {                
                     logDebug("button number was ${buttonNumber}")
