@@ -348,7 +348,7 @@ def sendEventToChildDevice(address, event, attributeValue, childDescriptionText,
         childDevice.parse([getEvent(childEvent)])        
     }
     else {
-        logWarn("could not find child device, skipping event!")			
+        log.warn("could not find child device, skipping event!")			
     }
 }
 
@@ -368,7 +368,7 @@ def getChildDeviceCurrentValue(address) {
             return currentValue
     }
     else {
-        logWarn("could not find child device!")			
+        log.warn("could not find child device!")			
     }
     return currentValue
 }

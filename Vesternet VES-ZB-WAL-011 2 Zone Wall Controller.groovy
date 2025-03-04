@@ -1,22 +1,22 @@
 /**
- *	Vesternet VES-ZB-WAL-011 2 Zone Wall Controller
+ *    Vesternet VES-ZB-WAL-011 2 Zone Wall Controller
  * 
  */
 metadata {
-	definition (name: "Vesternet VES-ZB-WAL-011 2 Zone Wall Controller", namespace: "Vesternet", author: "Vesternet", importUrl: "https://raw.githubusercontent.com/vesternet/hubitat-zigbee-device-drivers/main/Vesternet%20VES-ZB-WAL-011%202%20Zone%20Wall%20Controller.groovy") {
-		capability "PushableButton"
+    definition (name: "Vesternet VES-ZB-WAL-011 2 Zone Wall Controller", namespace: "Vesternet", author: "Vesternet", importUrl: "https://raw.githubusercontent.com/vesternet/hubitat-zigbee-device-drivers/main/Vesternet%20VES-ZB-WAL-011%202%20Zone%20Wall%20Controller.groovy") {
+        capability "PushableButton"
         capability "HoldableButton"
         capability "ReleasableButton"
-		capability "Battery"
+        capability "Battery"
         capability "Sensor"        
-		capability "Configuration"
+        capability "Configuration"
         
-		fingerprint profileId: "0104", endpointId: "01", inClusters: "0000,0001,0003,0B05", outClusters: "0003,0004,0005,0006,0008,0019,0300,1000", manufacturer: "Sunricher", model: "ZG2833K4_EU06", deviceJoinName: "Vesternet VES-ZB-WAL-011 2 Zone Wall Controller"    
-	}
-	preferences {
+        fingerprint profileId: "0104", endpointId: "01", inClusters: "0000,0001,0003,0B05", outClusters: "0003,0004,0005,0006,0008,0019,0300,1000", manufacturer: "Sunricher", model: "ZG2833K4_EU06", deviceJoinName: "Vesternet VES-ZB-WAL-011 2 Zone Wall Controller"    
+    }
+    preferences {
         input name: "logEnable", type: "bool", title: "Enable Debug Logging", defaultValue: true
         input name: "txtEnable", type: "bool", title: "Enable descriptionText Logging", defaultValue: true
-	}
+    }
 }
 
 def getModelNumberOfButtons() {
@@ -27,27 +27,27 @@ def getModelNumberOfButtons() {
 def installed() {
     device.updateSetting("logEnable", [value: "true", type: "bool"])
     device.updateSetting("txtEnable", [value: "true", type: "bool"])
-    logDebug("installed called")	
+    logDebug("installed called")    
     def numberOfButtons = modelNumberOfButtons[device.getDataValue("model")]
     logDebug("numberOfButtons: ${numberOfButtons}")
     sendEvent(getEvent(name: "numberOfButtons", value: numberOfButtons, displayed: false))
     for(def buttonNumber : 1..numberOfButtons) {
         sendEvent(buttonAction("pushed", buttonNumber, "digital"))
     }
-	runIn(1800,logsOff)
+    runIn(1800,logsOff)
 }
 
 def updated() {
-	logDebug("updated called")
-	log.warn("debug logging is: ${logEnable == true}")
+    logDebug("updated called")
+    log.warn("debug logging is: ${logEnable == true}")
     log.warn("descriptionText logging is: ${txtEnable == true}")
     state.clear()
-	unschedule()
-	if (logEnable) runIn(1800,logsOff)
+    unschedule()
+    if (logEnable) runIn(1800,logsOff)
 }
 
 def configure() {
-	logDebug("configure called")
+    logDebug("configure called")
     def cmds = [ "zdo bind 0x${device.deviceNetworkId} 0x01 0x01 0x0006 {${device.zigbeeId}} {}", "delay 200",
                 "zdo bind 0x${device.deviceNetworkId} 0x01 0x01 0x0008 {${device.zigbeeId}} {}", "delay 200",
                 "zdo bind 0x${device.deviceNetworkId} 0x02 0x01 0x0006 {${device.zigbeeId}} {}", "delay 200",
@@ -55,28 +55,28 @@ def configure() {
                 "zdo bind 0x${device.deviceNetworkId} 0x01 0x01 0x0001 {${device.zigbeeId}} {}", "delay 200",
                 "he cr 0x${device.deviceNetworkId} 0x01 0x0001 0x21 0x20 21600 21600 {0x01}" ]
     logDebug("sending ${cmds}")
-	return cmds
+    return cmds
 }
 
 void parse(String description) {
-	logDebug("parse called")
-	logDebug("got description: ${description}")	
+    logDebug("parse called")
+    logDebug("got description: ${description}")    
     def descriptionMap = zigbee.parseDescriptionAsMap(description)
-    def events = getEvents(descriptionMap)	
-	if (events) {	
-        events.each {		    
+    def events = getEvents(descriptionMap)    
+    if (events) {    
+        events.each {            
             sendEvent(it)
         }
-	}
-	else {	
-        logDebug("Unhandled command: ${descriptionMap}")			        	
-	}   
+    }
+    else {    
+        logDebug("Unhandled command: ${descriptionMap}")                        
+    }   
 }
 
 def getEvents(descriptionMap) {
     logDebug("getEvents called")
     logDebug("got descriptionMap: ${descriptionMap}")
-	def events = []    
+    def events = []    
     def endpoint = descriptionMap.sourceEndpoint ? zigbee.convertHexToInt(descriptionMap.sourceEndpoint) : descriptionMap.endpoint ? zigbee.convertHexToInt(descriptionMap.endpoint) : device.endpointId.toInteger()
     if (!(descriptionMap.profileId) || (descriptionMap.profileId && descriptionMap.profileId == "0104")) {
         if (descriptionMap.cluster == "0006" || descriptionMap.clusterId == "0006" || descriptionMap.clusterInt == 6) {
@@ -158,9 +158,9 @@ def getEvents(descriptionMap) {
                         logDebug("battery value is more than 100, dividing by 2")
                         batteryValue = (batteryValue / 2).toInteger();
                     }
-                    logDebug("battery percentage report is ${batteryValue}")		
+                    logDebug("battery percentage report is ${batteryValue}")        
                     def descriptionText = "${device.displayName} is ${batteryValue}%"
-                    logText(descriptionText)	                          
+                    logText(descriptionText)                              
                     events.add([name: "battery", value: batteryValue, unit: "%", descriptionText: descriptionText])
                 }
                 else {
@@ -185,7 +185,7 @@ def getEvents(descriptionMap) {
             }
         }
     }
-	return events
+    return events
 }
 
 def getEvent(event) {
@@ -212,19 +212,19 @@ def buttonAction(action, button, type) {
     logDebug("buttonAction called button: ${button} action: ${action} type: ${type}")  
     def descriptionText = "${device.displayName} button ${button} is ${action}"
     logText(descriptionText)
-	return getEvent([name: action, value: button, descriptionText: descriptionText, isStateChange: true, type: type])
+    return getEvent([name: action, value: button, descriptionText: descriptionText, isStateChange: true, type: type])
 }
 
 def logDebug(msg) {
-	if (logEnable != false) {
-		log.debug("${msg}")
-	}
+    if (logEnable != false) {
+        log.debug("${msg}")
+    }
 }
 
 def logText(msg) {
-	if (txtEnable != false) {
-		log.info("${msg}")
-	}
+    if (txtEnable != false) {
+        log.info("${msg}")
+    }
 }
 
 def logsOff() {
